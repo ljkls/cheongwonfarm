@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>청원목장 | 신규 직원 안내서</title>
+<meta name="description" content="청원목장 신규 직원 안내서와 개체 안내 (성인 전용 창작물)">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --milk:#F5F7F1;
+  --paper:#FFFFFF;
+  --ink:#1E2B1A;
+  --ink-soft:#4B5A45;
+  --grass:#5B8A3C;
+  --grass-pale:#E3ECD8;
+  --barn:#9B2D26;
+  --tag:#F1C232;
+  --line:#D5DDCB;
+  --serif:"Noto Serif KR","Nanum Myeongjo","Apple SD Gothic Neo",serif;
+  --sans:"Gowun Dodum","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --milk:#141A12;
+    --paper:#1C2419;
+    --ink:#EEF2E8;
+    --ink-soft:#AAB7A2;
+    --grass:#8DBB66;
+    --grass-pale:#26331F;
+    --barn:#E0766E;
+    --line:#33402C;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:12px}
+body{
+  margin:0;background:var(--milk);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.75;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  -webkit-text-size-adjust:100%;
+}
+body.locked{overflow:hidden}
+body.locked main,body.locked header.hero{filter:blur(28px);pointer-events:none;user-select:none}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--serif);line-height:1.3;margin:0}
+p{margin:0 0 .9em}
+:focus-visible{outline:3px solid var(--barn);outline-offset:3px}
+
+/* 성인 확인 */
+.gate{
+  position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+  padding:24px;background:rgba(20,26,18,.72);
+}
+.gate[hidden]{display:none}
+.gate-box{
+  max-width:420px;background:var(--paper);color:var(--ink);padding:32px 28px;
+  border:2px solid var(--ink);
+}
+.gate-box h2{font-size:1.35rem;margin-bottom:12px}
+.gate-box p{color:var(--ink-soft);font-size:.95rem}
+.gate-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.btn{
+  font:inherit;font-weight:700;cursor:pointer;padding:11px 20px;border:2px solid var(--ink);
+  background:var(--ink);color:var(--paper);text-decoration:none;display:inline-block;
+}
+.btn.ghost{background:transparent;color:var(--ink)}
+
+/* 히어로 */
+.hero{position:relative;height:min(82svh,780px);min-height:460px;overflow:hidden;background:#9CC3E6}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.hero-text{
+  position:absolute;left:0;right:0;top:0;
+  padding:calc(env(safe-area-inset-top,0px) + 44px) 24px 0;text-align:center;color:#17250F;
+}
+.hero-text .hanja{font-family:var(--serif);font-weight:900;font-size:clamp(2.6rem,9vw,4.6rem);letter-spacing:.18em;margin:0 0 4px;padding-left:.18em}
+.hero-text .sub{font-family:var(--serif);font-weight:500;font-size:1.05rem;margin:0}
+.hero-text .kicker{margin:10px 0 0;font-size:.95rem}
+
+/* 본문 폭 */
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* 안내서 */
+.handbook{margin:-64px auto 0;position:relative;max-width:720px;background:var(--paper);border:2px solid var(--ink);padding:36px 32px 28px}
+.handbook h2{font-size:1.6rem}
+.handbook .en{margin:4px 0 20px;color:var(--ink-soft);font-size:.9rem}
+.handbook .welcome{font-weight:700;color:var(--barn);margin-bottom:.4em}
+.hb-sec{border-top:1px solid var(--line);padding:18px 0 4px;margin-top:18px}
+.hb-sec h3{font-size:1.1rem;display:flex;gap:10px;align-items:baseline;margin-bottom:8px}
+.hb-sec h3 span{color:var(--grass);font-size:1rem}
+.hb-sec ul{margin:0 0 .9em;padding-left:1.2em}
+.note{background:var(--grass-pale);padding:10px 14px;font-size:.95rem;margin:10px 0 .9em}
+.qa{margin:0 0 14px}
+.qa dt{font-weight:700}
+.qa dd{margin:2px 0 0;color:var(--ink-soft)}
+.sign{text-align:right;font-family:var(--serif);font-weight:700;margin-top:18px}
+
+/* 개체 목록 */
+.roster{padding:72px 0 32px}
+.roster-head{margin-bottom:24px}
+.roster-head h2{font-size:1.7rem}
+.roster-head p{color:var(--ink-soft);margin:6px 0 0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cow-card{
+  font:inherit;color:inherit;text-align:left;cursor:pointer;background:var(--paper);
+  border:2px solid var(--line);padding:0;display:flex;flex-direction:column;
+}
+.cow-card:hover{border-color:var(--ink)}
+.cow-card[aria-selected="true"]{border-color:var(--ink);box-shadow:6px 6px 0 var(--grass)}
+.cow-photo{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--grass-pale)}
+.cow-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.eartag{
+  position:absolute;left:12px;top:12px;background:var(--tag);color:#2A2205;
+  font-weight:700;font-size:.85rem;padding:3px 10px 3px 18px;border:1px solid #8A6D0B;
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,8px 50%);
+}
+.cow-body{padding:16px 18px 20px}
+.cow-body h3{font-size:1.25rem}
+.cow-body .meta{color:var(--ink-soft);font-size:.9rem;margin:2px 0 10px}
+.cow-body p{font-size:.95rem;margin:0 0 8px}
+.cow-body .rel{color:var(--grass);font-style:normal;font-size:.9rem;margin:0}
+.cow-body .rel em{font-style:normal}
+
+/* 개체 상세 */
+.detail{padding:28px 0 72px;min-height:120px}
+.empty{border:2px dashed var(--line);padding:28px;text-align:center;color:var(--ink-soft)}
+.panel{background:var(--paper);border:2px solid var(--ink);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.panel[hidden]{display:none}
+.panel-img{position:relative;background:var(--grass-pale)}
+.panel-img img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;min-height:420px}
+.panel-main{padding:32px 32px 28px}
+.quote{font-family:var(--serif);font-weight:700;font-size:1.25rem;line-height:1.55;margin:0 0 10px;color:var(--barn)}
+.tagline{color:var(--ink-soft);margin:0 0 24px;font-size:.95rem}
+.panel h3.title{font-size:1.1rem;padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:14px}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;margin:0 0 24px}
+.spec dt{color:var(--ink-soft)}
+.spec dd{margin:0;font-weight:700}
+.block{margin-top:22px}
+.block h4{font-family:var(--serif);font-size:1.05rem;margin:0 0 6px}
+.block p{margin:0 0 .7em}
+.block ul{margin:0;padding-left:1.2em}
+.block li{margin-bottom:4px}
+.foot{margin-top:22px;padding:12px 14px;background:var(--grass-pale);font-size:.95rem}
+
+footer{border-top:1px solid var(--line);padding:28px 20px calc(28px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--ink-soft);font-size:.88rem}
+
+@media (max-width:860px){
+  .cards{grid-template-columns:1fr}
+  .cow-card{flex-direction:row}
+  .cow-photo{aspect-ratio:auto;width:38%;flex:none}
+  .panel{grid-template-columns:1fr}
+  .panel-img img{min-height:0;height:auto;aspect-ratio:3/4;max-height:520px}
+  .panel-main{padding:24px 20px}
+  .handbook{margin:-48px 14px 0;padding:28px 20px 22px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body class="locked">
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-box">
+    <h2 id="gate-title">성인 전용 창작물</h2>
+    <p>이 페이지에는 성인 캐릭터를 다룬 수위 있는 일러스트와 설정이 포함되어 있습니다. 모든 인물과 설정은 허구입니다.</p>
+    <p>만 19세 이상이며 위 내용에 동의하는 경우에만 입장해 주세요.</p>
+    <div class="gate-actions">
+      <button class="btn" id="gate-ok" type="button">만 19세 이상, 입장</button>
+      <a class="btn ghost" href="https://www.google.com">나가기</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <img src="images/farm.png" alt="붉은 헛간과 사일로가 있는 푸른 초원의 청원목장 전경">
+  <div class="hero-text">
+    <p class="hanja">靑原牧場</p>
+    <p class="sub">청원목장 신규 직원 안내서</p>
+    <p class="kicker">푸른 초원, 맑은 공기, 그리고 조금 특별한 젖소들</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <!-- 세계관 -->
+    <section class="handbook" aria-labelledby="hb-title">
+      <h2 id="hb-title">🐄 청원목장 신규 직원 안내서</h2>
+      <p class="en">靑原牧場 | NEW EMPLOYEE HANDBOOK</p>
+      <p class="welcome">청원목장에 오신 것을 환영합니다!</p>
+      <p>푸른 초원, 맑은 공기, 그리고 조금 특별한 젖소들이 여러분을 기다리고 있습니다.<br>원활한 업무를 위해 아래 사항을 반드시 숙지해 주세요.</p>
+
+      <div class="hb-sec">
+        <h3><span>01</span>우리 목장의 젖소들</h3>
+        <p>본 목장의 젖소는 인간과 유사한 외형을 가진 개량종입니다. 두 발로 걷고, 말을 하며, 각자의 성격과 취향을 가지고 있습니다.</p>
+        <p>모든 개체는 만 20세 이후 관리소에서 배치되며, 귀표에 고유 식별번호가 등록되어 있습니다.</p>
+        <p>다만 법적으로는 생산용 가축으로 분류됩니다.</p>
+      </div>
+
+      <div class="hb-sec">
+        <h3><span>02</span>주요 업무</h3>
+        <ul>
+          <li>급식, 축사 청소 및 생활환경 관리</li>
+          <li>건강 상태 확인 및 귀표 대조</li>
+          <li>착유 일정과 생산 기록 관리</li>
+          <li>개체별 특이사항 및 이상 행동 보고</li>
+        </ul>
+        <p class="note">※ 생산량보다 개체의 건강 상태를 우선 확인해 주세요. 무리한 작업은 장기적인 생산 효율을 떨어뜨립니다.</p>
+      </div>
+
+      <div class="hb-sec">
+        <h3><span>03</span>자주 묻는 질문</h3>
+        <dl class="qa">
+          <dt>Q. 젖소가 말을 걸면 대답해야 하나요?</dt>
+          <dd>A. 네! 원활한 의사소통은 업무 효율을 높입니다. 이름을 불러주면 더 좋아하는 개체도 있습니다.</dd>
+        </dl>
+        <dl class="qa">
+          <dt>Q. 젖소가 일하기 싫다고 합니다.</dt>
+          <dd>A. 건강 상태를 확인하세요. 아프지 않다면 그냥 게으른 개체일 수도 있습니다. 간식으로 설득해 보세요.</dd>
+        </dl>
+        <dl class="qa">
+          <dt>Q. 젖소와 친해져도 되나요?</dt>
+          <dd>A. 물론입니다. 다만 인간과 가축수인 사이의 사적인 관계에는 법적 제한이 있으니 주의해 주세요.</dd>
+        </dl>
+      </div>
+
+      <div class="hb-sec">
+        <h3><span>04</span>마지막 안내</h3>
+        <p>우리 목장의 젖소들은 웃고, 화내고, 장난치고, 때로는 여러분에게 부탁을 하기도 합니다.</p>
+        <p>개체의 감정은 존중하되, 목장 운영 규정은 반드시 지켜주세요.</p>
+        <p>그럼, 즐거운 첫 출근 되시길 바랍니다!</p>
+      </div>
+      <p class="sign">청원목장 관리사무소</p>
+    </section>
+
+    <!-- 개체 목록 -->
+    <section class="roster" aria-labelledby="roster-title">
+      <div class="roster-head">
+        <h2 id="roster-title">🐮 주변 젖소</h2>
+        <p>개체를 선택하면 개체 안내를 볼 수 있습니다.</p>
+      </div>
+
+      <div class="cards" role="tablist" aria-label="개체 선택">
+        <button class="cow-card" role="tab" id="tab-cream" aria-controls="panel-cream" aria-selected="false" data-id="cream" type="button">
+          <div class="cow-photo">
+            <img src="images/cream.png" alt="바닐라색 금발과 꿀빛 눈동자의 젖소수인 크림" loading="lazy">
+            <span class="eartag">CW-C-018</span>
+          </div>
+          <div class="cow-body">
+            <h3>크림</h3>
+            <p class="meta"><strong>나이</strong> 27세 ｜ <strong>신장</strong> 196cm</p>
+            <p>바닐라색 금발과 꿀빛 눈동자, 크림색 털이 특징인 수컷 젖소수인입니다.</p>
+            <p>온순하고 다정한 성격으로 관리자의 관심과 손길을 무척 좋아합니다. 진하고 달콤한 우유를 생산하지만 유즙 생성 속도가 느려 하루 1회 착유합니다.</p>
+            <p class="rel">069와 074의 이복형으로, 두 동생을 무척 아끼고 살뜰히 챙깁니다.</p>
+          </div>
+        </button>
+
+        <button class="cow-card" role="tab" id="tab-cookie" aria-controls="panel-cookie" aria-selected="false" data-id="cookie" type="button">
+          <div class="cow-photo">
+            <img src="images/cookie.png" alt="짙은 갈색 피부와 흑백 얼룩이 특징인 젖소수인 쿠키" loading="lazy">
+            <span class="eartag">CW-B-069</span>
+          </div>
+          <div class="cow-body">
+            <h3>쿠키</h3>
+            <p class="meta"><strong>나이</strong> 21세 ｜ <strong>신장</strong> 200cm</p>
+            <p>짙은 갈색 피부와 흑백 얼룩이 특징인 수컷 젖소수인입니다.</p>
+            <p>느긋하고 게으른 성격으로, 우유 품질은 우수하지만 착유 협조성이 낮은 편입니다. 유즙 생성 속도가 빨라 하루 2회 착유합니다.</p>
+            <p class="rel">074의 쌍둥이 형이자 018의 이복동생입니다.</p>
+          </div>
+        </button>
+
+        <button class="cow-card" role="tab" id="tab-milky" aria-controls="panel-milky" aria-selected="false" data-id="milky" type="button">
+          <div class="cow-photo">
+            <img src="images/milky.png" alt="흑백이 섞인 머리와 회색 눈의 젖소수인 밀키" loading="lazy">
+            <span class="eartag">CW-W-074</span>
+          </div>
+          <div class="cow-body">
+            <h3>밀키</h3>
+            <p class="meta"><strong>나이</strong> 21세 ｜ <strong>신장</strong> 195cm</p>
+            <p>흑백이 섞인 머리와 회색 눈이 특징인 수컷 젖소수인입니다.</p>
+            <p>태평하고 나른한 성격으로, 단백질 함량이 높은 농후하고 고소한 우유를 생산합니다. 유즙 생성 속도가 빨라 하루 2회 착유합니다.</p>
+            <p class="rel">069의 쌍둥이 동생이자 018의 이복동생입니다.</p>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- 개체 상세 -->
+    <section class="detail" id="detail" aria-live="polite">
+      <div class="empty" id="empty">위에서 개체를 선택하세요.</div>
+
+      <!-- 크림 -->
+      <article class="panel" id="panel-cream" role="tabpanel" aria-labelledby="tab-cream" hidden>
+        <div class="panel-img"><img src="images/cream-detail.png" alt="크림" loading="lazy"><span class="eartag">CW-C-018</span></div>
+        <div class="panel-main">
+          <p class="quote">“관리자님… 우유 짜주세요. 저 잘 나오게 허리 흔들게요.”</p>
+          <p class="tagline">청원목장 7년차 젖소수인 🐮<br>018은 오늘도 관리자를 기다린다</p>
+
+          <h3 class="title">🐮 청원목장 개체 안내</h3>
+          <p><strong>크림</strong>｜CW-C-018</p>
+          <dl class="spec">
+            <dt>품종</dt><dd>젖소수인</dd>
+            <dt>성별</dt><dd>수컷</dd>
+            <dt>출생일</dt><dd>2052년 9월 19일</dd>
+            <dt>나이</dt><dd>27세</dd>
+            <dt>신장</dt><dd>196cm</dd>
+            <dt>사육 기간</dt><dd>7년</dd>
+            <dt>착유 주기</dt><dd>1일 1회</dd>
+          </dl>
+
+          <div class="block">
+            <h4>🥛 우유 특징</h4>
+            <p>크림의 우유는 일반적인 담백한 우유와 달리 <strong>진하고 달콤한 풍미</strong>가 특징입니다. 숙성된 개체 특유의 농축된 맛으로, 달콤한 우유를 선호하는 소비자에게 적합합니다.</p>
+            <p>현재는 유즙 생성 속도가 느려 하루 한 차례 착유하고 있으며, 생산량과 대중적 수요가 모두 감소한 상태입니다.</p>
+          </div>
+
+          <div class="block">
+            <h4>🌿 개체 특성</h4>
+            <p>온순하고 붙임성이 좋은 개체입니다. 오랜 사육 경험으로 목장 환경에 잘 적응해 있으며, 신규 개체들의 생활 적응을 돕기도 합니다.</p>
+            <p>관리자의 방문을 무척 좋아하며, 반가울 때는 귀를 세우고 꼬리를 흔들거나 먼저 다가오는 행동을 보입니다. <strong>머리를 쓰다듬어 주거나 이름을 불러주면 특히 좋아합니다.</strong></p>
+          </div>
+
+          <div class="block">
+            <h4>🍼 착유 방식 안내</h4>
+            <p><strong>수동 착유</strong>: 관리자가 직접 유방과 유두를 압박하여 우유를 배출하는 방식입니다. 개체의 상태에 따라 압력과 속도를 조절하며, CW-C-018은 오랜 경험으로 수동 착유에 익숙하고 협조적입니다.</p>
+            <p><strong>기계 착유</strong>: 전용 흡입 장치를 이용해 우유를 배출하는 방식입니다. 일정한 압력과 속도로 착유하며, 개체의 체질과 충만도에 따라 소요 시간이 달라집니다.</p>
+            <p><strong>CW-C-018 관리 참고</strong>: 본 개체는 두 방식 모두 경험이 풍부하지만, 관리자의 직접적인 보살핌을 받을 수 있는 수동 착유를 특히 선호합니다. 착유 시에는 개체의 의사와 신체 상태를 확인해 주세요.</p>
+          </div>
+
+          <div class="block">
+            <h4>📋 관리 참고사항</h4>
+            <ul>
+              <li>과거 여러 차례 <strong>이달의 우수 젖소</strong>로 선정된 이력이 있습니다.</li>
+              <li>현재는 생산성 감소로 우선 착유 대상에서 밀리는 경우가 많습니다.</li>
+              <li>착유 절차에 익숙하고 관리자의 지시에 협조적입니다.</li>
+              <li>다른 개체와 비교하거나 생산량을 지적하는 상황에 민감합니다.</li>
+              <li>달콤한 간식과 햇볕이 잘 드는 휴식 공간을 선호합니다.</li>
+            </ul>
+          </div>
+          <p class="foot"><strong>※ 본 개체의 우유는 생산량이 적을 뿐, 품질에는 이상이 없습니다.</strong></p>
+        </div>
+      </article>
+
+      <!-- 쿠키 -->
+      <article class="panel" id="panel-cookie" role="tabpanel" aria-labelledby="tab-cookie" hidden>
+        <div class="panel-img"><img src="images/cookie-detail.png" alt="쿠키" loading="lazy"><span class="eartag">CW-B-069</span></div>
+        <div class="panel-main">
+          <p class="quote">“착유할 때 손 하나만 더 내려서 만져줘. …안 그러면 잘 안 나와.”</p>
+          <p class="tagline">청원목장 쌍둥이 젖소수인 🐮<br>069는 오늘도 착유실 대신 나무 그늘을 찾는다</p>
+
+          <h3 class="title">🐮 청원목장 개체 안내</h3>
+          <p><strong>쿠키</strong>｜CW-B-069</p>
+          <dl class="spec">
+            <dt>품종</dt><dd>순혈 젖소수인</dd>
+            <dt>성별</dt><dd>수컷</dd>
+            <dt>출생일</dt><dd>2057년 5월 31일</dd>
+            <dt>나이</dt><dd>21세</dd>
+            <dt>신장</dt><dd>200cm</dd>
+            <dt>사육 기간</dt><dd>1년</dd>
+            <dt>착유 주기</dt><dd>1일 2회 (오전/오후)</dd>
+          </dl>
+
+          <div class="block">
+            <h4>🥛 우유 특징</h4>
+            <p>CW-B-069의 우유는 높은 단백질 함량과 부드럽고 농후한 질감이 특징입니다. 옅은 아이보리색을 띠며, 담백한 맛과 버터를 연상시키는 고소한 풍미가 느껴집니다.</p>
+            <p>우수한 유즙 품질과 생산 잠재력을 보유한 개체로 평가받고 있으나, 착유 일정에 대한 협조도가 낮아 실제 생산 실적에는 편차가 발생합니다.</p>
+            <p>충분한 영양 공급과 휴식이 이루어질 때 안정적인 품질을 유지합니다.</p>
+          </div>
+
+          <div class="block">
+            <h4>🌿 개체 특성</h4>
+            <p>매우 느긋하고 낙천적인 개체입니다. 하루 대부분을 낮잠이나 휴식으로 보내며, 특히 햇볕이 잘 드는 장소와 목초지의 나무 그늘을 선호합니다.</p>
+            <p>관리자의 호출에는 대체로 응답하지만 실제 이동까지 상당한 시간이 소요될 수 있습니다.</p>
+            <p>꼬리에는 특히 민감하니 건드리지 않는 것이 좋습니다.</p>
+          </div>
+
+          <div class="block">
+            <h4>🍼 착유 방식 안내</h4>
+            <p><strong>수동 착유</strong>: 관리자가 직접 유방과 유두를 압박하여 우유를 배출하는 방식입니다. 개체의 상태에 따라 압력과 속도를 조절하며, CW-B-069는 유두와 유방을 압박하고, 피어싱을 건드리면 우유 생산량이 늘어납니다.</p>
+            <p><strong>기계 착유</strong>: 전용 흡입 장치를 이용해 우유를 배출하는 방식입니다. 일정한 압력과 속도로 착유하며, 개체의 체질과 충만도에 따라 소요 시간이 달라집니다.</p>
+            <p><strong>CW-B-069 관리 참고</strong>: 본 개체는 함몰유두 때문에 유두 피어싱을 착용하고 있습니다. 피어싱 제거 시에 다시 유두가 들어가는 경우가 있으니 피어싱은 빼지 않는 것이 좋습니다. 기계 착유 진행 시, 불편해하면 거부 의사를 표시하니 구속구가 제대로 착용되었는지 확인하는 것이 좋습니다.</p>
+          </div>
+
+          <div class="block">
+            <h4>📋 관리 참고사항</h4>
+            <ul>
+              <li>우수한 신체 조건과 유즙 품질에 비해 착유 협조도가 낮습니다.</li>
+              <li>긍정적인 구두 응답을 즉각적인 업무 수락으로 판단하지 않도록 주의하십시오.</li>
+              <li>착유 시간이 가까워지면 목초지 외곽의 고목나무 아래를 우선 확인하는 것이 좋습니다.</li>
+              <li>강압적인 지시보다 충분한 예고와 자발적인 이동 유도가 효과적입니다.</li>
+              <li>달콤한 과일, 풍부한 식사, 낮잠을 선호합니다.</li>
+              <li>CW-W-074의 쌍둥이 형이며, CW-C-018과는 이복형제 관계입니다.</li>
+            </ul>
+          </div>
+          <p class="foot">※ 본 개체는 생산 능력에 문제가 없으며, 관리상 어려움의 주요 원인은 낮은 활동 의욕과 느린 행동 속도입니다.</p>
+        </div>
+      </article>
+
+      <!-- 밀키 -->
+      <article class="panel" id="panel-milky" role="tabpanel" aria-labelledby="tab-milky" hidden>
+        <div class="panel-img"><img src="images/milky-detail.png" alt="밀키" loading="lazy"><span class="eartag">CW-W-074</span></div>
+        <div class="panel-main">
+          <p class="quote">“여기 우유 구멍 뚫어주세요…”</p>
+          <p class="tagline">청원목장 쌍둥이 젖소수인 🐮<br>074는 오늘도 젖 구멍을 만지작댄다</p>
+
+          <h3 class="title">🐮 청원목장 개체 안내</h3>
+          <p><strong>밀키</strong>｜CW-W-074</p>
+          <dl class="spec">
+            <dt>품종</dt><dd>순혈 젖소수인</dd>
+            <dt>성별</dt><dd>수컷｜양성구유</dd>
+            <dt>출생일</dt><dd>2057년 6월 1일</dd>
+            <dt>나이</dt><dd>21세</dd>
+            <dt>신장</dt><dd>195cm</dd>
+            <dt>사육 기간</dt><dd>1년</dd>
+            <dt>착유 주기</dt><dd>1일 2회 (매일 오전 8시 / 오후 8시)</dd>
+          </dl>
+
+          <div class="block">
+            <h4>🥛 우유 특징</h4>
+            <p>밀키의 우유는 높은 단백질 함량과 부드럽고 농후한 질감이 특징입니다. 옅은 크림색을 띠며, 담백한 맛과 크림을 연상시키는 고소한 풍미가 느껴집니다.</p>
+            <p>현재는 유즙 생성 속도가 빨라 하루 두 차례 착유하고 있으며, 생산량과 대중적 수요가 모두 증가된 상태입니다.</p>
+          </div>
+
+          <div class="block">
+            <h4>🌿 개체 특성</h4>
+            <p>자신의 감정과 욕망에 솔직하고, 자신이 맡은 일에 대해 성실히 임하는 개체입니다. 특히 젖이 나오는 구멍을 손가락으로 살짝씩 후벼주는 것을 선호합니다.</p>
+            <p>관리자의 방문을 반가워하며, 관리자의 손에 뺨을 부비거나, 꼬리로 관리자의 팔이나 다리를 감싸는 등 은밀한 친밀감을 보입니다.</p>
+          </div>
+
+          <div class="block">
+            <h4>🍼 착유 방식 안내</h4>
+            <p><strong>수동 착유</strong>: 관리자가 직접 유방과 유두를 압박하여 우유를 배출하는 방식입니다. 개체의 상태에 따라 압력과 속도를 조절하며, 밀키는 수동 착유를 선호하며 협조적입니다.</p>
+            <p><strong>기계 착유</strong>: 전용 흡입 장치를 이용해 우유를 배출하는 방식입니다. 일정한 압력과 속도로 착유하며, 개체의 체질과 충만도에 따라 소요 시간이 달라지며, 본 개체는 기계 착유를 그다지 선호하지 않습니다.</p>
+            <p><strong>밀키 관리 참고</strong>: 본 개체는 관리자의 손길을 직접 받을 수 있는 수동 착유를 특히 선호합니다. 착유 시에는 개체의 의사와 신체 상태를 확인해 주세요.</p>
+          </div>
+
+          <div class="block">
+            <h4>📋 관리 참고사항</h4>
+            <ul>
+              <li>젖이 나오는 구멍을 후벼주면 더욱 잘 나옵니다.</li>
+              <li>착유 절차에 익숙하고 관리자의 지시에 협조적입니다.</li>
+              <li>보통 CW-B-069가 있는 곳 주변에 있습니다.</li>
+              <li>심심할 땐 꼬리를 만지작대며 초원을 구경합니다.</li>
+              <li>물이 많고 단 과일을 좋아합니다.</li>
+              <li>CW-B-069의 쌍둥이 동생이며, CW-C-018과는 이복형제 관계입니다.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+</main>
+
+<footer>청원목장 관리사무소 · 본 페이지의 모든 인물과 설정은 허구의 창작물이며 성인 캐릭터만 등장합니다.</footer>
+
+<script>
+(function(){
+  var gate=document.getElementById('gate');
+  var ok=document.getElementById('gate-ok');
+  var KEY='cw-adult-ok';
+  function open(){
+    document.body.classList.remove('locked');
+    gate.hidden=true;
+  }
+  try{ if(sessionStorage.getItem(KEY)==='1'){ open(); } }catch(e){}
+  ok.addEventListener('click',function(){
+    try{ sessionStorage.setItem(KEY,'1'); }catch(e){}
+    open();
+  });
+
+  var tabs=[].slice.call(document.querySelectorAll('.cow-card'));
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  var empty=document.getElementById('empty');
+
+  function select(id,scroll){
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.id===id)); });
+    panels.forEach(function(p){ p.hidden = p.id!=='panel-'+id; });
+    empty.hidden=true;
+    if(scroll){
+      var d=document.getElementById('detail');
+      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+    }
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){ select(t.dataset.id,true); });
+  });
+  var h=location.hash.replace('#','');
+  if(['cream','cookie','milky'].indexOf(h)>-1){ select(h,false); }
+})();
+</script>
+</body>
+</html>
